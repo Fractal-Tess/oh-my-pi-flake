@@ -86,6 +86,9 @@
 
       formatter = forAllSystems (system: (pkgsFor system).nixfmt);
 
+      nixosModules.default = import ./modules/nixos.nix { inherit self; };
+      homeManagerModules.default = import ./modules/home-manager.nix { inherit self; };
+
       overlays.default = _final: previous: {
         omp = self.packages.${previous.stdenv.hostPlatform.system}.omp;
       };

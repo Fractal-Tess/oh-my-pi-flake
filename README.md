@@ -31,30 +31,37 @@ Add the flake input:
 inputs.omp-flake.url = "github:Fractal-Tess/oh-my-pi-flake";
 ```
 
-Add the package to Home Manager, passing `inputs` through `extraSpecialArgs`:
+Use the NixOS or Home Manager module:
 
 ```nix
-{ inputs, pkgs, ... }:
+# NixOS
 {
-  home.packages = [
-    inputs.omp-flake.packages.${pkgs.stdenv.hostPlatform.system}.omp
-  ];
+  imports = [ inputs.omp-flake.nixosModules.default ];
+  programs.omp.enable = true;
+}
+
+# Home Manager
+{
+  imports = [ inputs.omp-flake.homeManagerModules.default ];
+  programs.omp.enable = true;
 }
 ```
 
-For a system-wide install, use the same package in `environment.systemPackages`.
+The module defaults to the flake's canonical `omp` package. To select a
+package explicitly, set `programs.omp.package`, for example
+`inputs.omp-flake.packages.${pkgs.system}.omp`.
 
-The default overlay exposes the package as `pkgs.omp`:
+The default overlay remains available when you prefer `pkgs.omp`:
 
 ```nix
-{ inputs, pkgs, ... }:
 {
   nixpkgs.overlays = [ inputs.omp-flake.overlays.default ];
   environment.systemPackages = [ pkgs.omp ];
 }
 ```
 
-OMP keeps its own settings and sessions under `~/.omp`; installing this package does not manage or migrate that data.
+OMP keeps its own settings and sessions under `~/.omp`; installing this package
+does not manage or migrate that data.
 
 ## Update
 
