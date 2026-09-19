@@ -115,12 +115,6 @@ stdenv.mkDerivation {
     RUSTFLAGS = platform.rustFlags;
   };
 
-  # This revision missed the Collab CLI when migrating off the chalk package.
-  postPatch = ''
-    substituteInPlace packages/coding-agent/src/cli/collab-cli.ts \
-      --replace-fail 'from "chalk"' 'from "@oh-my-pi/pi-utils/chalk"'
-  '';
-
   buildPhase = ''
     runHook preBuild
 

@@ -65,14 +65,11 @@ does not manage or migrate that data.
 
 ## Update
 
-The upstream source is pinned in `flake.lock`. Update that input and inspect the resulting diff:
+The daily [update workflow](.github/workflows/update.yml) advances the locked upstream source, refreshes changed dependency hashes, and commits only after the package passes its flake check. Run the same process locally with:
 
 ```sh
-nix flake update source
-nix flake check
+./scripts/update.sh
 ```
-
-The current locked coding-agent package version is `18.1.21`.
 
 ## Credits and mirrors
 
