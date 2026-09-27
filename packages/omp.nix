@@ -122,6 +122,9 @@ stdenv.mkDerivation {
     cargo build --release -p pi-natives ${lib.optionalString withWaylandScreencast "--features wayland-pipewire"}
     install -Dm755 "target/release/${platform.nativeLibrary}" \
       "packages/natives/native/${platform.addon}"
+    # Upstream's Bazel install stamps the release version into the addon's
+    # post-link slot; embed-native refuses unstamped addons.
+    bun scripts/stamp-native-version.ts "packages/natives/native/${platform.addon}"
     # The loader extracts this archived addon at runtime, so fix its
     # interpreter-independent Nix RPATH before Bun embeds it.
     autoPatchelf -- "packages/natives/native/${platform.addon}"
