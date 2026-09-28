@@ -112,11 +112,11 @@
     "source": {
       "flake": false,
       "locked": {
-        "lastModified": 1790525540,
-        "narHash": "sha256-54hhzO5BGdeyS0V8a8AR4BiLVbAkDie0zbBE65cIdqM=",
+        "lastModified": 1790622411,
+        "narHash": "sha256-RR+3pIbnxnk8dJZDIZltkBP5jR/9fCNbA03FazJXF+E=",
         "owner": "can1357",
         "repo": "oh-my-pi",
-        "rev": "5edcae3fa0c82baca142d5691eb45c4ff45e9abf",
+        "rev": "6dad5de125c2a508983c0f3e7ef9e79205ab71df",
         "type": "github"
       },
       "original": {
