@@ -96,11 +96,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792567368,
-        "narHash": "sha256-mrM+zFDRO1pI85t2SEq5R739BIq7Nv5XkFtVZK9nkZM=",
+        "lastModified": 1792653800,
+        "narHash": "sha256-E8zFJilWlORqzIUJizyhZ/0WKBOizuM6s1nRSgPRomo=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "83dd732f2428827f35d997deae108a2ced5125f4",
+        "rev": "5f267b7f323a4d6df0b9c0e3eaa043cbe85386f2",
         "type": "github"
       },
       "original": {
@@ -112,11 +112,11 @@
     "source": {
       "flake": false,
       "locked": {
-        "lastModified": 1792599337,
-        "narHash": "sha256-rZhTJqwBdoLwaTR+nnBykLgRH+yBWOPqyn+6mmSN+d0=",
+        "lastModified": 1792664545,
+        "narHash": "sha256-kglF+uehFqZwyyKpy387MVp1s9URMakZ0+Z9A8aqJ9k=",
         "owner": "can1357",
         "repo": "oh-my-pi",
-        "rev": "2056e7d1051e3b47e56b5d90659d3a28a78ef18d",
+        "rev": "0b5c27ab24719c86a5986b95ee55f4e75bc1aaa0",
         "type": "github"
       },
       "original": {
