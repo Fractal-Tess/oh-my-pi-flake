@@ -58,9 +58,10 @@ main() {
   after="$(jq -r '.nodes.source.locked.rev' flake.lock)"
   # Upstream pins a dated Rust nightly in rust-toolchain.toml. A stale
   # rust-overlay has no manifest for a newer nightly, so refresh it whenever
-  # the source moves.
+  # the source moves. Refresh the Bun version catalog at the same time so
+  # a new upstream runtime requirement is available to the package.
   if [[ "$before" != "$after" ]]; then
-    nix flake update rust-overlay
+    nix flake update rust-overlay nix-bun
   fi
 
   printf 'Upstream source: %s -> %s\n' "$before" "$after"

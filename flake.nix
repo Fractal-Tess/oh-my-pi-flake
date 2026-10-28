@@ -50,8 +50,17 @@
         system:
         let
           pkgs = pkgsFor system;
+          rootPackageJson = nixpkgs.lib.importJSON "${source}/package.json";
+          bunRequirement = nixpkgs.lib.removePrefix "bun@" rootPackageJson.packageManager;
+          # Upstream uses both exact versions and minimum-version constraints.
+          bunMatch = builtins.match "(>=|\\^|~|=)?([0-9]+\\.[0-9]+\\.[0-9]+)(\\+.*)?" bunRequirement;
+          bunVersion =
+            if bunMatch == null then
+              throw "Unsupported upstream Bun requirement: ${bunRequirement}"
+            else
+              builtins.elemAt bunMatch 1;
           bun = pkgs.callPackage (nix-bun.outPath + "/package.nix") {
-            sourcesFile = nix-bun.outPath + "/versions/1.4.2.json";
+            sourcesFile = nix-bun.outPath + "/versions/${bunVersion}.json";
           };
         in
         pkgs.callPackage ./packages/omp.nix {
