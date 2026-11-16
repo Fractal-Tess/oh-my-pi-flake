@@ -151,7 +151,9 @@ stdenv.mkDerivation {
 
     install -Dm755 packages/coding-agent/dist/omp "$out/bin/omp"
     install -Dm644 LICENSE "$out/share/doc/omp/LICENSE"
-    install -Dm644 THIRD-PARTY-NOTICES.txt "$out/share/doc/omp/THIRD-PARTY-NOTICES.txt"
+    if [ -f THIRD-PARTY-NOTICES.txt ]; then
+      install -Dm644 THIRD-PARTY-NOTICES.txt "$out/share/doc/omp/THIRD-PARTY-NOTICES.txt"
+    fi
 
     # The addon is gzip-compressed inside the compiled binary, so the store
     # paths it links against are invisible to Nix's output reference scanner.
